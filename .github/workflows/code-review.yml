@@ -1,0 +1,22 @@
+name: Code Review Workflow
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run code analysis
+      run: npm run analyze-code
+      
+    - name: Perform security scan
+      run: npm run security-scan
