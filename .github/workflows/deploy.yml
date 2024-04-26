@@ -29,4 +29,4 @@ jobs:
         with:
           args: deploy --prod
         env:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+            github_token: ${{ secrets.GH_ACTIONS }}
