@@ -1,4 +1,4 @@
-name: Netlify Deployment
+name: Deployment Pipeline
 
 on:
   push:
@@ -8,22 +8,31 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '16'
 
-      - name: Install Netlify CLI
-        run: npm install -g netlify-cli
-        continue-on-error: true 
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build
-        run: npm run build
+      - name: Build Docker image
+        run: npm run build 
+
+      - name: Test
+        run: npm test  # Update with your test command
+        continue-on-error: true
 
       - name: Deploy to Netlify
-        run: netlify deploy --prod --auth ${{ secrets.GITHUB_TOKEN }}
+        uses: nwtgck/actions-netlify@v1
+        with:
+          publish-dir: './public'  # Specify the directory to deploy
+          deploy-dir: './dist'     # Specify the directory to deploy (optional)
+          deploy-message: 'Deployed using GitHub Actions'  # Specify deployment message
+          github-token: ${{ secrets.GITHUB_TOKEN }}  # Set Netlify authentication token as a secret
+          enable-pull-request-comment: 'false'  # Disable PR comments (optional)
