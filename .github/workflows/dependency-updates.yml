@@ -13,8 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      - name: Run dependency updates
-        uses: dependabot/dependabot-core@v0.253.0  # Use the specific version
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          directory: '/'
+      - name: Run custom dependency update script
+        run: |
+          npm install -g npm-check-updates
+          ncu -u
+          npm install
+          git commit -am "chore(deps): update dependencies"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
