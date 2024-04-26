@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
@@ -18,11 +18,14 @@ jobs:
         with:
           node-version: '12.x'
 
-      - name: Install Netlify CLI
-        run: npm install -g netlify-cli
+      - name: Install dependencies
+        run: npm install
 
       - name: Build
         run: npm run build
 
       - name: Deploy to Netlify
-        run: netlify deploy --prod --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        uses: nwtgck@actions-netlify@v1
+        with:
+          args: deploy --prod
+          github-token: ${{ secrets.GITHUB_TOKEN }}
