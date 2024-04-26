@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node run.js",
     "analyze-code": "eslint .",
-    "build-docs": "node src/build-docs.js"
+    "build-docs": "node src/build-docs.js",
+    "lint": "eslint ."
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
