@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Run dependency updates
-        uses: dependabot/dependabot-core@v0.254.0  # Use the latest version
+        uses: dependabot/dependabot-core
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           directory: '/'
