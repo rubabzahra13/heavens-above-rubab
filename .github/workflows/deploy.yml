@@ -18,14 +18,11 @@ jobs:
         with:
           node-version: '12.x'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
 
       - name: Build
         run: npm run build
 
       - name: Deploy to Netlify
-        uses: netlify/actions/cli@v0.7.19
-        with:
-          args: deploy --prod
-          github-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: netlify deploy --prod --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
