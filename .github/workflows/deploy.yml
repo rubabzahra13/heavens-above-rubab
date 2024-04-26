@@ -27,5 +27,6 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck@actions-netlify@v1
         with:
-          args: deploy --prod
+          publish-dir: "./build"
+          production-command: "node run.js"
           github-token: ${{ secrets.GITHUB_TOKEN }}
