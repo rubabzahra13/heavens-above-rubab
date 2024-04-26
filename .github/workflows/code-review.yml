@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: node:20  # Use a Node.js Docker image with Node.js version >=20
+      image: node:19  # Use a Node.js Docker image with ESLint pre-installed
 
     steps:
       - name: Checkout Code
