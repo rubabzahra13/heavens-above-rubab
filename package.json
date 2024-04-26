@@ -6,6 +6,7 @@
   "main": "run.js",
   "scripts": {
     "start": "node run.js",
+    "analyze-code": "eslint .",
     "build-docs": "node src/build-docs.js"
   },
   "dependencies": {
