@@ -1,20 +1,20 @@
 name: Dependency Updates
 
 on:
-    push:
-        branches:
-          - main
+  push:
+    branches:
+      - main
 
 jobs:
   update:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       
-    - name: Run dependency updates
-      uses: dependabot/dependabot-core@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        directory: '/'
+      - name: Run dependency updates
+        uses: dependabot/dependabot-core@v0.254.0  # Use the latest version
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: '/'
