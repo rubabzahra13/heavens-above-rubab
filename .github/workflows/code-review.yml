@@ -1,22 +1,20 @@
 name: Code Review Workflow
 
 on:
-    push:
-        branches:
-          - main
+  push:
+    branches:
+      - main
 
 jobs:
   code_review:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+
+    container:
+      image: node:16  # Use a Node.js Docker image with ESLint pre-installed
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-
-      - name: Set Up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12.x'
 
       - name: Install Dependencies
         run: npm install
