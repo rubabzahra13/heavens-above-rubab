@@ -1,0 +1,31 @@
+name: Netlify Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'  
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm start  
+
+      - name: Deploy to Netlify
+        uses: netlify/actions/cli@v1
+        with:
+          args: deploy --prod
+          github-token: ${{ secrets.GITHUB_TOKEN }}

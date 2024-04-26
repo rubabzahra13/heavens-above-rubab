@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-
+//j
 function getTimestamp(time) {
 	const arr = time.split(":");
 	return parseInt(arr[0]) * 3600 + parseInt(arr[1]) * 60 + parseInt(arr[2]);
