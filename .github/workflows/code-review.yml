@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: node:14  # Use a Node.js Docker image with ESLint pre-installed
+      image: node:14  # Use a Node.js Docker image with npm installed
 
     steps:
       - name: Checkout Code
@@ -22,6 +22,9 @@ jobs:
       - name: Lint Code
         run: npm run lint
         continue-on-error: true 
+
+      - name: Install ESLint
+        run: npm install eslint --save-dev
 
       - name: Analyze Code Quality
         run: npm run analyze 
