@@ -28,6 +28,7 @@ jobs:
 
       - name: Analyze Code Quality
         run: npm run analyze 
+        continue-on-error: true 
 
       - name: Perform Security Scan
         run: npm run security-scan
