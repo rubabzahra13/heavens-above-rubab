@@ -1,0 +1,20 @@
+name: Custom Workflow Integration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  custom_task:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run custom task
+      run: |
+
+        echo "Running custom task..."
+        

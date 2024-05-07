@@ -1,0 +1,38 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build 
+        run: npm start  
+
+      - name: Test
+        run: npm test  
+        continue-on-error: true
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1
+        with:
+          publish-dir: './public' 
+          deploy-dir: './dist'   
+          deploy-message: 'Deployed using GitHub Actions' 
+          github-token: ${{ secrets.GITHUB_TOKEN }}  
+          enable-pull-request-comment: 'false' 

@@ -1,0 +1,24 @@
+name: Dependency Updates
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Run custom dependency update script
+        run: |
+          npm install -g npm-check-updates
+          ncu -u
+          npm install
+          git commit -am "chore(deps): update dependencies"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
