@@ -1,16 +1,15 @@
 name: Code Review Workflow
 
 on:
-  push:
-    branches:
-      - main
+    pull_request:
+      types: [opened, synchronize]
 
 jobs:
   code_review:
     runs-on: ubuntu-latest
 
     container:
-      image: node:14  # Use a Node.js Docker image with npm installed
+      image: node:14  
 
     steps:
       - name: Checkout Code
@@ -32,5 +31,5 @@ jobs:
 
       - name: Security Scan
         run: npm audit  
-        continue-on-error: true 
+        continue-on-error: true
 

@@ -9,7 +9,8 @@
     "analyze-code": "eslint .",
     "build-docs": "node src/build-docs.js",
     "lint": "eslint .",
-    "analyze": "eslint ."
+    "analyze": "eslint .",
+    "test": "node test.js"
 
   },
   "dependencies": {

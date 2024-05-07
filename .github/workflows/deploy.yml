@@ -25,14 +25,14 @@ jobs:
         run: npm start  
 
       - name: Test
-        run: npm test  # Update with your test command
+        run: npm test  
         continue-on-error: true
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1
         with:
-          publish-dir: './public'  # Specify the directory to deploy
-          deploy-dir: './dist'     # Specify the directory to deploy (optional)
-          deploy-message: 'Deployed using GitHub Actions'  # Specify deployment message
-          github-token: ${{ secrets.GITHUB_TOKEN }}  # Set Netlify authentication token as a secret
-          enable-pull-request-comment: 'false'  # Disable PR comments (optional)
+          publish-dir: './public' 
+          deploy-dir: './dist'   
+          deploy-message: 'Deployed using GitHub Actions' 
+          github-token: ${{ secrets.GITHUB_TOKEN }}  
+          enable-pull-request-comment: 'false' 

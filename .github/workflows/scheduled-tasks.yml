@@ -1,10 +1,8 @@
 name: Scheduled Tasks
 
 on:
-    push:
-        branches:
-          - main
-    
+  schedule:
+    - cron: '0 0 * * *' 
 
 jobs:
   npm-install:
